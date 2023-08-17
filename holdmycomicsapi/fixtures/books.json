@@ -1,0 +1,203 @@
+[
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 1,
+    "fields": {
+    "imageURL": "https://example.com/images/comic1.jpg",
+    "publisher": "Marvel Comics",
+    "title": "Spider-Man: Web of Intrigue",
+    "price": 12,
+    "description": "Follow Spider-Man's adventures as he uncovers a web of mystery and danger."
+  }
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 2,
+    "fields": {
+    "imageURL": "https://example.com/images/comic2.jpg",
+    "publisher": "DC Comics",
+    "title": "Batman: The Caped Crusader",
+    "price": 15,
+    "description": "Witness the dark and vigilant journey of Batman as he battles his iconic foes."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 3,
+    "fields": {
+    "imageURL": "https://example.com/images/comic3.jpg",
+    "publisher": "Image Comics",
+    "title": "Spawn: Origins",
+    "price": 10,
+    "description": "Discover the origins of the supernatural antihero, Spawn, in this gripping tale."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 4,
+    "fields": {
+    "imageURL": "https://example.com/images/comic4.jpg",
+    "publisher": "Dark Horse Comics",
+    "title": "Hellboy: Seed of Destruction",
+    "price": 9,
+    "description": "Uncover the secrets of the paranormal investigator, Hellboy, in this epic saga."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 5,
+    "fields": {
+    "imageURL": "https://example.com/images/comic5.jpg",
+    "publisher": "Marvel Comics",
+    "title": "X-Men: Mutant Revolution",
+    "price": 13,
+    "description": "Join the X-Men as they fight for equality and survival in a world filled with mutants."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 6,
+    "fields": {
+    "imageURL": "https://example.com/images/comic6.jpg",
+    "publisher": "DC Comics",
+    "title": "Wonder Woman: Amazon Warrior",
+    "price": 11,
+    "description": "Experience the legendary tales of Wonder Woman, an Amazon princess and hero."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 7,
+    "fields": {
+    "imageURL": "https://example.com/images/comic7.jpg",
+    "publisher": "Image Comics",
+    "title": "Saga: Space Odyssey",
+    "price": 14,
+    "description": "Embark on a space-fantasy odyssey with star-crossed lovers and a universe at war."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 8,
+    "fields": {
+    "imageURL": "https://example.com/images/comic8.jpg",
+    "publisher": "Dark Horse Comics",
+    "title": "Sin City: A Dame to Kill For",
+    "price": 12,
+    "description": "Navigate the treacherous streets of Sin City in this noir-inspired crime story."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 9,
+    "fields": {
+    "imageURL": "https://example.com/images/comic9.jpg",
+    "publisher": "Marvel Comics",
+    "title": "Avengers: Endless War",
+    "price": 16,
+    "description": "Witness the epic battles and alliances of Earth's mightiest heroes, the Avengers."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 10,
+    "fields": {
+    "imageURL": "https://example.com/images/comic10.jpg",
+    "publisher": "DC Comics",
+    "title": "Superman: Man of Tomorrow",
+    "price": 13,
+    "description": "Experience the enduring saga of Superman, the iconic Man of Steel."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 11,
+    "fields": {
+    "imageURL": "https://example.com/images/comic11.jpg",
+    "publisher": "Image Comics",
+    "title": "Invincible: Family Ties",
+    "price": 10,
+    "description": "Follow the coming-of-age journey of Invincible, a teenage superhero."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 12,
+    "fields": {
+    "imageURL": "https://example.com/images/comic12.jpg",
+    "publisher": "Dark Horse Comics",
+    "title": "Usagi Yojimbo: Warrior's Path",
+    "price": 11,
+    "description": "Accompany the wandering rabbit samurai, Usagi Yojimbo, on his path of honor."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 13,
+    "fields": {
+    "imageURL": "https://example.com/images/comic13.jpg",
+    "publisher": "Marvel Comics",
+    "title": "Deadpool: Merc with a Mouth",
+    "price": 12,
+    "description": "Join the eccentric and humorous Deadpool on a chaotic quest across dimensions."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 14,
+    "fields": {
+    "imageURL": "https://example.com/images/comic14.jpg",
+    "publisher": "DC Comics",
+    "title": "Aquaman: Kingdom Rising",
+    "price": 10,
+    "description": "Dive into the underwater kingdom of Atlantis with the heroic Aquaman."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 15,
+    "fields": {
+    "imageURL": "https://example.com/images/comic15.jpg",
+    "publisher": "Image Comics",
+    "title": "The Walking Dead: Survival Chronicles",
+    "price": 9,
+    "description": "Experience the challenges and horrors of survival in a world overrun by zombies."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 16,
+    "fields": {
+    "imageURL": "https://example.com/images/comic16.jpg",
+    "publisher": "Dark Horse Comics",
+    "title": "B.P.R.D.: Hell on Earth",
+    "price": 11,
+    "description": "Join the Bureau for Paranormal Research and Defense in their battle against supernatural threats."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 17,
+    "fields": {
+    "imageURL": "https://example.com/images/comic17.jpg",
+    "publisher": "Marvel Comics",
+    "title": "Black Widow: Deadly Secrets",
+    "price": 14,
+    "description": "Unravel the enigmatic past of Black Widow, the skilled and mysterious spy."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 18,
+    "fields": {
+    "imageURL": "https://example.com/images/comic18.jpg",
+    "publisher": "DC Comics",
+    "title": "Green Lantern: Reckoning",
+    "price": 12,
+    "description": "Join the Green Lantern Corps in their cosmic mission to protect the universe."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 19,
+    "fields": {
+    "imageURL": "https://example.com/images/comic19.jpg",
+    "publisher": "Image Comics",
+    "title": "Monstress: Awakening",
+    "price": 15,
+    "description": "Enter a world of dark magic and political intrigue in the captivating Monstress series."}
+  },
+  {
+    "model": "holdmycomicsapi.book",
+    "pk": 20,
+    "fields": {
+    "imageURL": "https://example.com/images/comic20.jpg",
+    "publisher": "Dark Horse Comics",
+    "title": "Frank Miller's Sin City",
+    "price": 13,
+    "description": "Explore the gritty and morally complex world of Frank Miller's Sin City."}
+  }
+]
