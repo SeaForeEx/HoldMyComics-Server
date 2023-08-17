@@ -42,7 +42,7 @@ class CustomerView(ViewSet):
         
         customer = Customer.objects.get(pk=pk)
         customer.store_id = User.objects.get(pk=request.data["storeId"])
-        customer.customer_name = request.data["customer_name"]
+        customer.customer_name = request.data["customerName"]
         customer.email = request.data["email"]
         customer.save()
         return Response('Customer Updated', status=status.HTTP_200_OK)

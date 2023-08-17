@@ -28,6 +28,13 @@ class UserView(ViewSet):
             return Response(serializer.data)
         except User.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+        
+    def destroy(self, request, pk):
+        """DELETE User"""
+        
+        user = User.objects.get(pk=pk)
+        user.delete()
+        return Response('User Deleted', status=status.HTTP_204_NO_CONTENT)
 
 class UserSerializer(serializers.ModelSerializer):
     """JSON Serializer for Users"""
