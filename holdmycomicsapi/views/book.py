@@ -33,7 +33,7 @@ class BookView(ViewSet):
         """Add Book To Customer"""
         customer = Customer.objects.get(pk=request.data["customerId"])
         book = Book.objects.get(pk=pk)
-        added = CustomerBook.objects.create(
+        CustomerBook.objects.create(
             customer=customer,
             book=book
         )
