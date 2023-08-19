@@ -2,7 +2,8 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from holdmycomicsapi.models import Customer, User
+from rest_framework.decorators import action
+from holdmycomicsapi.models import Customer, User, CustomerBook
 
 class CustomerView(ViewSet):
     """HMC Customers View"""
@@ -53,6 +54,23 @@ class CustomerView(ViewSet):
         customer = Customer.objects.get(pk=pk)
         customer.delete()
         return Response('Customer Deleted', status=status.HTTP_204_NO_CONTENT)
+    
+    @action(methods=['get'], detail=True)
+    def get_books(self, request, pk):
+        """Get the books for the customer"""
+        try:
+            customer_books = CustomerBook.objects.filter(customer_id = pk)
+            serializer = CustomerBookSerializer(customer_books, many=True)
+            return Response(serializer.data)
+        except CustomerBook.DoesNotExist:
+            return Response(False)
+        
+class CustomerBookSerializer(serializers.ModelSerializer):
+    """JSON Serializer for Customer Books"""
+    class Meta:
+        model = CustomerBook
+        fields = ('id', 'customer', 'book')
+        depth = 1
       
 class CustomerSerializer(serializers.ModelSerializer):
     """JSON Serializer for Customers"""
@@ -60,3 +78,4 @@ class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = ('id', 'store_id', 'customer_name', 'email')
+        depth = 1
