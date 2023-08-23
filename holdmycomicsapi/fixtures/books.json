@@ -3,7 +3,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 1,
     "fields": {
-    "image_url": "https://example.com/images/comic1.jpg",
+    "image_url": "https://m.media-amazon.com/images/I/612hkqiosgL._AC_UF1000,1000_QL80_.jpg",
     "publisher": "Marvel Comics",
     "title": "Spider-Man: Web of Intrigue",
     "price": 12,
@@ -14,7 +14,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 2,
     "fields": {
-    "image_url": "https://example.com/images/comic2.jpg",
+    "image_url": "https://m.media-amazon.com/images/I/81gMjuOGFPL._AC_UF350,350_QL50_.jpg",
     "publisher": "DC Comics",
     "title": "Batman: The Caped Crusader",
     "price": 15,
@@ -24,7 +24,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 3,
     "fields": {
-    "image_url": "https://example.com/images/comic3.jpg",
+    "image_url": "https://m.media-amazon.com/images/I/71+LRWsvO4L._AC_UF1000,1000_QL80_.jpg",
     "publisher": "Image Comics",
     "title": "Spawn: Origins",
     "price": 10,
@@ -34,7 +34,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 4,
     "fields": {
-    "image_url": "https://example.com/images/comic4.jpg",
+    "image_url": "https://m.media-amazon.com/images/I/81StsboFpdL._AC_UF1000,1000_QL80_.jpg",
     "publisher": "Dark Horse Comics",
     "title": "Hellboy: Seed of Destruction",
     "price": 9,
@@ -44,7 +44,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 5,
     "fields": {
-    "image_url": "https://example.com/images/comic5.jpg",
+    "image_url": "https://cdn.marvel.com/u/prod/marvel/i/mg/c/a0/5b58d9cebc137/clean.jpg",
     "publisher": "Marvel Comics",
     "title": "X-Men: Mutant Revolution",
     "price": 13,
@@ -54,7 +54,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 6,
     "fields": {
-    "image_url": "https://example.com/images/comic6.jpg",
+    "image_url": "https://www.budsartbooks.com/wp-content/uploads/2021/09/ww80yh-wonder-woman-80-years-of-amazon-warrior-book_4.jpg",
     "publisher": "DC Comics",
     "title": "Wonder Woman: Amazon Warrior",
     "price": 11,
@@ -64,7 +64,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 7,
     "fields": {
-    "image_url": "https://example.com/images/comic7.jpg",
+    "image_url": "https://cdn.imagecomics.com/assets/i/releases/922368/saga-61_617acc544f.jpg",
     "publisher": "Image Comics",
     "title": "Saga: Space Odyssey",
     "price": 14,
@@ -74,7 +74,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 8,
     "fields": {
-    "image_url": "https://example.com/images/comic8.jpg",
+    "image_url": "https://comicvine.gamespot.com/a/uploads/scale_small/0/4/43257-5114-49438-1-sin-city-a-dame-to-.jpg",
     "publisher": "Dark Horse Comics",
     "title": "Sin City: A Dame to Kill For",
     "price": 12,
@@ -84,7 +84,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 9,
     "fields": {
-    "image_url": "https://example.com/images/comic9.jpg",
+    "image_url": "https://static.tvtropes.org/pmwiki/pub/images/infinity_wars.jpg",
     "publisher": "Marvel Comics",
     "title": "Avengers: Endless War",
     "price": 16,
@@ -94,7 +94,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 10,
     "fields": {
-    "image_url": "https://example.com/images/comic10.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/0/02/Superman423.jpg",
     "publisher": "DC Comics",
     "title": "Superman: Man of Tomorrow",
     "price": 13,
@@ -104,7 +104,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 11,
     "fields": {
-    "image_url": "https://example.com/images/comic11.jpg",
+    "image_url": "https://m.media-amazon.com/images/I/91q1P8iaf8L._AC_UF1000,1000_QL80_.jpg",
     "publisher": "Image Comics",
     "title": "Invincible: Family Ties",
     "price": 10,
@@ -114,7 +114,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 12,
     "fields": {
-    "image_url": "https://example.com/images/comic12.jpg",
+    "image_url": "https://m.media-amazon.com/images/I/A1TyHmZUTLL._AC_UF1000,1000_QL80_.jpg",
     "publisher": "Dark Horse Comics",
     "title": "Usagi Yojimbo: Warrior's Path",
     "price": 11,
@@ -124,7 +124,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 13,
     "fields": {
-    "image_url": "https://example.com/images/comic13.jpg",
+    "image_url": "https://cdn.marvel.com/u/prod/marvel/i/mg/e/90/5a0dbb93c1a4e/clean.jpg",
     "publisher": "Marvel Comics",
     "title": "Deadpool: Merc with a Mouth",
     "price": 12,
@@ -134,7 +134,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 14,
     "fields": {
-    "image_url": "https://example.com/images/comic14.jpg",
+    "image_url": "https://static.dc.com/dc/files/default_images/aquaman_v6_32_5b1561fcb010e1.01636052.jpg",
     "publisher": "DC Comics",
     "title": "Aquaman: Kingdom Rising",
     "price": 10,
@@ -144,7 +144,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 15,
     "fields": {
-    "image_url": "https://example.com/images/comic15.jpg",
+    "image_url": "https://m.media-amazon.com/images/I/714usRKL3fL._AC_UF1000,1000_QL80_.jpg",
     "publisher": "Image Comics",
     "title": "The Walking Dead: Survival Chronicles",
     "price": 9,
@@ -154,7 +154,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 16,
     "fields": {
-    "image_url": "https://example.com/images/comic16.jpg",
+    "image_url": "https://m.media-amazon.com/images/I/91V6AawBQmL._AC_UF1000,1000_QL80_.jpg",
     "publisher": "Dark Horse Comics",
     "title": "B.P.R.D.: Hell on Earth",
     "price": 11,
@@ -164,7 +164,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 17,
     "fields": {
-    "image_url": "https://example.com/images/comic17.jpg",
+    "image_url": "https://m.media-amazon.com/images/I/51BNbOE3-LL._AC_UF1000,1000_QL80_.jpg",
     "publisher": "Marvel Comics",
     "title": "Black Widow: Deadly Secrets",
     "price": 14,
@@ -174,7 +174,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 18,
     "fields": {
-    "image_url": "https://example.com/images/comic18.jpg",
+    "image_url": "https://www.discountmags.com/shopimages/products/normal/extra/i/7959-1415203918-green-lantern.jpg",
     "publisher": "DC Comics",
     "title": "Green Lantern: Reckoning",
     "price": 12,
@@ -184,7 +184,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 19,
     "fields": {
-    "image_url": "https://example.com/images/comic19.jpg",
+    "image_url": "https://m.media-amazon.com/images/I/81I1tf38snL._AC_UF1000,1000_QL80_.jpg",
     "publisher": "Image Comics",
     "title": "Monstress: Awakening",
     "price": 15,
@@ -194,7 +194,7 @@
     "model": "holdmycomicsapi.book",
     "pk": 20,
     "fields": {
-    "image_url": "https://example.com/images/comic20.jpg",
+    "image_url": "https://m.media-amazon.com/images/I/71MJfUxHjSS._AC_UF1000,1000_QL80_.jpg",
     "publisher": "Dark Horse Comics",
     "title": "Frank Miller's Sin City",
     "price": 13,
