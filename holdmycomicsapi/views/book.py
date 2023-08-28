@@ -60,9 +60,10 @@ class BookView(ViewSet):
             customer_id=customer.id,
             book_id=book.id
         )
-            
-        # Delete the CustomerBook instance            customer_book.delete()
-            
+        
+        # Delete the CustomerBook instance            
+        customer_book.delete()
+        
         # Return a success response
         return Response({'message': 'Book removed from Customer'}, status=status.HTTP_204_NO_CONTENT)
     

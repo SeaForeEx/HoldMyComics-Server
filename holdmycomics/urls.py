@@ -20,8 +20,14 @@ from django.conf.urls import include
 from rest_framework import routers
 from holdmycomicsapi.views import register_user, check_user, BookView, CustomerView, UserView
 
+# url.py sets up which url to use for viewing the data
+
 router = routers.DefaultRouter(trailing_slash=False)
+# trailing_slash=False tells the router to accept /gametypes instead of /gametypes/
 router.register(r'books', BookView, 'book')
+# the first parameter, r'books, sets up the url
+# the second parameter, BookView, tells the server which view to use when it sees that url
+# the third parameter, book, is called the base name. You’ll only see the base name if you get an error in the server
 router.register(r'customers', CustomerView, 'customer')
 router.register(r'users', UserView, 'user')
 

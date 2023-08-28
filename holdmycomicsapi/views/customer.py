@@ -11,19 +11,42 @@ class CustomerView(ViewSet):
     def create(self, request):
         """POST Customer"""
         
+        # requests data from front end to get the data used to create the entity
+        
+        # retrieves User object from database
+        # client data stored in request.data dictionary
         store_id = User.objects.get(pk=request.data["storeId"])
+        
+        # call create ORM method and pass fields as function parameters
         customer = Customer.objects.create(
             store_id = store_id,
             customer_name=request.data["customerName"],
             email=request.data["email"],
-        )
+        ) # customer variable is now the new customer instance, including new id
+        
+        # object is now serialized
         serializer = CustomerSerializer(customer)
+        
+        # data passed back to the front end
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # be succinct and high level in interviews, less is more
+        # be focused on giving my knowledge instead of what I think question wants
+        # give the answer then STOP
+        # how everything connects
     
     def retrieve(self, request, pk):
         """GET Single Customer"""
         
-        customer = Customer.objects.get(pk=pk)
+        customer = Customer.objects.get(pk=pk) # Object Relational Mapping
+        
+        # Customer - name of a Django model
+        # .objects - Manager instance attached to the model. It's a mechanism that Django provides to interact with the database
+        # .get(pk=pk) - method provided by the manager to retrieve a single object from the database table. The pk parameter is used to specify the primary key value of the object you want to retrieve.
+        
+        # Customer.objects.get(pk=pk) - ORM query that instructs Django to fetch a single GameType object from the database table where the primary key matches the value provided in pk.
+        
+        # Django ORM allows you to interact with your database using Python code and model classes instead of writing raw SQL queries, provides a more intuitive interface, and helps you write more maintainable and portable code..
+        
         serializer = CustomerSerializer(customer)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
@@ -33,26 +56,48 @@ class CustomerView(ViewSet):
 
         customers = Customer.objects.all()
         store_id = request.query_params.get('storeId', None)
+        # request method parameter holds all the information for the request from the client
+        # request.query_params is a dictionary of any query parameters that were in the url
+        # using .get method on a dictionary is a safe way to find if a key is present on the dictionary
+        # If the 'storeId' key is not present on the dictionary it will return None
+        
         if store_id is not None:
+            # ORM filter method only returns customers with specific store id
             customers = customers.filter(store_id=store_id)
         serializer = CustomerSerializer(customers, many=True)
+         # customers variable is now a list of Customer objects
+         # many = list instead of single customer
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     def update(self, request, pk):
         """PUT Customer"""
+        # PUT requests expect the entire object to be sent to the server regardless of whether a field has been updated
         
+        # grab customer object you want from database
         customer = Customer.objects.get(pk=pk)
+        
+        # setting the fields on customer to the values coming from the client
         customer.store_id = User.objects.get(pk=request.data["storeId"])
         customer.customer_name = request.data["customerName"]
         customer.email = request.data["email"]
+        
+        # changes saved to data base
         customer.save()
+        
+        # data returned to front end
         return Response('Customer Updated', status=status.HTTP_200_OK)
     
     def destroy(self, request, pk):
         """DELETE Customer"""
-        
+        # deletes a row from the database
+        # retrieve, update, and destroy methods take the pk as an argument
+         
+        # get pk to get single object to be deleted
         customer = Customer.objects.get(pk=pk)
+        
+        # call delete from ORM to remove customer from database
         customer.delete()
+        
         return Response('Customer Deleted', status=status.HTTP_204_NO_CONTENT)
     
     @action(methods=['get'], detail=True)
@@ -76,6 +121,10 @@ class CustomerSerializer(serializers.ModelSerializer):
     """JSON Serializer for Customers"""
   
     class Meta:
+        # The Meta class hold the configuration for the serializer.
         model = Customer
         fields = ('id', 'store_id', 'customer_name', 'email')
         depth = 1
+        # GET methods do not include nested data, need "depth" to get that sweet Nestle Data
+        
+# ORM provides a way to map between objects in your programming language and tables in a relational database
