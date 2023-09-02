@@ -3,7 +3,11 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from rest_framework.decorators import action
+import requests
+import environ
 from holdmycomicsapi.models import Book, Customer, CustomerBook
+env = environ.Env()
+
 
 class BookView(ViewSet):
     """HMC Books View"""
@@ -17,12 +21,26 @@ class BookView(ViewSet):
             return Response(serializer.data)
         except Book.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-          
+    
     def list(self, request):
         """GET All Books"""
+        api_url = "https://metron.cloud/api/issue/?store_date_range_after=2023-09-05&store_date_range_before=2023-09-06"
+        response = requests.get(api_url, auth=(env('METRON_USERNAME'), env('METRON_PASSWORD')), timeout=60)
         
-        # Retrieve all Book objects
-        books = Book.objects.all()
+        json = response.json()
+        books = []
+        
+        for item in json['results']:
+            book = Book(
+                id=item.get('id'),
+                image_url=item.get('image'),
+                publisher='',
+                title=item.get('issue', ''),
+                price=0,
+                description=''
+            )
+            books.append(book)
+        
         # Serialize the Book objects
         serializer = BookSerializer(books, many=True)
         # Return the serialized data along with the HTTP 200 OK status
