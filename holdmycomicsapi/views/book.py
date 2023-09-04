@@ -1,12 +1,13 @@
 from rest_framework.viewsets import ViewSet
-# from django.views.decorators.cache import cache_page
-# from django.core.cache import cache
+
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from rest_framework.decorators import action
 import requests
 import environ
+import datetime
 from holdmycomicsapi.models import Book, Customer, CustomerBook
+
 env = environ.Env()
 
 class BookView(ViewSet):
@@ -63,7 +64,24 @@ class BookView(ViewSet):
     # @cache_page(60 * 15)  # Cache the response for 15 minutes
     def list(self, request):
         """GET All Books"""
-        api_url = "https://metron.cloud/api/issue/?store_date_range_after=2023-09-05&store_date_range_before=2023-09-06"
+        
+        # Calculate the dates for the upcoming Tuesday and Wednesday of the current week
+        today = datetime.date.today()
+        current_day_of_week = today.weekday()  # 0 = Monday, 1 = Tuesday, ..., 6 = Sunday
+        
+        # Calculate the number of days to add to reach the upcoming Tuesday (1 day for Monday, 0 days for Tuesday, etc.)
+        days_until_next_tuesday = (1 - current_day_of_week) % 7
+    
+        # Calculate the dates for Tuesday and Wednesday
+        next_tuesday = today + datetime.timedelta(days=days_until_next_tuesday)
+        next_wednesday = next_tuesday + datetime.timedelta(days=1)
+    
+        # Format the dates as strings
+        next_tuesday_str = next_tuesday.strftime('%Y-%m-%d')
+        next_wednesday_str = next_wednesday.strftime('%Y-%m-%d')
+        
+         # Build the API URL with the calculated dates
+        api_url = f"https://metron.cloud/api/issue/?store_date_range_after={next_tuesday_str}&store_date_range_before={next_wednesday_str}"
 
         response = requests.get(api_url, auth=(env('METRON_USERNAME'), env('METRON_PASSWORD')), timeout=60)
         
