@@ -61,25 +61,25 @@ class BookView(ViewSet):
             return Response({'error': 'Failed to fetch data from external API'}, status=response.status_code)
     
     def list(self, request):
-        """GET All Books"""
+        """GET Books Released Between Monday and Sunday of the Current Week"""
         
-        # Calculate the dates for the upcoming Tuesday and Wednesday of the current week
+        # Calculate the start date (Monday) of the current week
         today = datetime.date.today()
         current_day_of_week = today.weekday()  # 0 = Monday, 1 = Tuesday, ..., 6 = Sunday
         
-        # Calculate the number of days to add to reach the upcoming Tuesday (1 day for Monday, 0 days for Tuesday, etc.)
-        days_until_next_tuesday = (1 - current_day_of_week) % 7
+        # Calculate the number of days to subtract to reach the start of the current week (0 days for Monday, 1 day for Tuesday, etc.)
+        days_until_monday = current_day_of_week
+        start_of_week = today - datetime.timedelta(days=days_until_monday)
     
-        # Calculate the dates for Tuesday and Wednesday
-        next_tuesday = today + datetime.timedelta(days=days_until_next_tuesday)
-        next_wednesday = next_tuesday + datetime.timedelta(days=1)
+        # Calculate the end date (Sunday) of the current week
+        end_of_week = start_of_week + datetime.timedelta(days=6)  # 6 days from Monday to Sunday
     
-        # Format the dates as strings
-        next_tuesday_str = next_tuesday.strftime('%Y-%m-%d')
-        next_wednesday_str = next_wednesday.strftime('%Y-%m-%d')
+        # Format the start and end dates as strings (e.g., "2023-09-04" for Monday and "2023-09-10" for Sunday)
+        start_date_str = start_of_week.strftime('%Y-%m-%d')
+        end_date_str = end_of_week.strftime('%Y-%m-%d')
         
-         # Build the API URL with the calculated dates
-        api_url = f"https://metron.cloud/api/issue/?store_date_range_after={next_tuesday_str}&store_date_range_before={next_wednesday_str}"
+         # Build the API URL with the calculated date range
+        api_url = f"https://metron.cloud/api/issue/?store_date_range_after={start_date_str}&store_date_range_before={end_date_str}"
 
         response = requests.get(api_url, auth=(env('METRON_USERNAME'), env('METRON_PASSWORD')), timeout=60)
         
