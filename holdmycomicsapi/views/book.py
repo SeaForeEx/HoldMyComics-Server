@@ -63,18 +63,16 @@ class BookView(ViewSet):
     def list(self, request):
         """GET Books Released Between Monday and Sunday of the Current Week"""
         
-        # Calculate the start date (Monday) of the current week
+        # Retrieves the current date and assigns it to the today variable
         today = datetime.date.today()
-        current_day_of_week = today.weekday()  # 0 = Monday, 1 = Tuesday, ..., 6 = Sunday
-        
-        # Calculate the number of days to subtract to reach the start of the current week (0 days for Monday, 1 day for Tuesday, etc.)
-        days_until_monday = current_day_of_week
-        start_of_week = today - datetime.timedelta(days=days_until_monday)
-    
+
+        # Calculate the start date (Monday) of the current week directly
+        start_of_week = today - datetime.timedelta(days=today.weekday())
+
         # Calculate the end date (Sunday) of the current week
-        end_of_week = start_of_week + datetime.timedelta(days=6)  # 6 days from Monday to Sunday
-    
-        # Format the start and end dates as strings (e.g., "2023-09-04" for Monday and "2023-09-10" for Sunday)
+        end_of_week = start_of_week + datetime.timedelta(days=6)
+
+        # Format the start and end dates as strings
         start_date_str = start_of_week.strftime('%Y-%m-%d')
         end_date_str = end_of_week.strftime('%Y-%m-%d')
         
