@@ -60,23 +60,47 @@ class BookView(ViewSet):
             # Handle other error cases
             return Response({'error': 'Failed to fetch data from external API'}, status=response.status_code)
     
-    def list(self, request):
-        """GET Books Released Between Monday and Sunday of the Current Week"""
+    # def list(self, request):
+    #     """GET Books Released Between Monday and Sunday of the Current Week"""
         
-        # Retrieves the current date and assigns it to the today variable
+    #     # Retrieves the current date and assigns it to the today variable
+    #     today = datetime.date.today()
+
+    #     # Calculate the start date (Monday) of the current week directly
+    #     start_of_week = today - datetime.timedelta(days=today.weekday())
+
+    #     # Calculate the end date (Sunday) of the current week
+    #     end_of_week = start_of_week + datetime.timedelta(days=6)
+
+    #     # Format the start and end dates as strings
+    #     start_date_str = start_of_week.strftime('%Y-%m-%d')
+    #     end_date_str = end_of_week.strftime('%Y-%m-%d')
+        
+    #      # Build the API URL with the calculated date range
+    #     api_url = f"https://metron.cloud/api/issue/?store_date_range_after={start_date_str}&store_date_range_before={end_date_str}"
+    
+    def list(self, request):
+        """GET All Books"""
+        # Get the selected week from the query parameters
+        selected_week = request.GET.get('week')  # Default to 'this' week if not specified
+        print(f"Selected Week: {selected_week}")
+
+        # Calculate the start and end dates based on the selected week
         today = datetime.date.today()
-
-        # Calculate the start date (Monday) of the current week directly
-        start_of_week = today - datetime.timedelta(days=today.weekday())
-
-        # Calculate the end date (Sunday) of the current week
-        end_of_week = start_of_week + datetime.timedelta(days=6)
+        if selected_week == 'next':
+            # Calculate the start date for next week
+            start_of_week = today + datetime.timedelta(days=(7 - today.weekday()))
+            end_of_week = start_of_week + datetime.timedelta(days=6)
+        else:
+            # Calculate the start date for this week
+            start_of_week = today - datetime.timedelta(days=today.weekday())
+            end_of_week = start_of_week + datetime.timedelta(days=6)
 
         # Format the start and end dates as strings
         start_date_str = start_of_week.strftime('%Y-%m-%d')
         end_date_str = end_of_week.strftime('%Y-%m-%d')
-        
-         # Build the API URL with the calculated date range
+
+        # Build the API URL with the calculated date range
         api_url = f"https://metron.cloud/api/issue/?store_date_range_after={start_date_str}&store_date_range_before={end_date_str}"
 
         response = requests.get(api_url, auth=(env('METRON_USERNAME'), env('METRON_PASSWORD')), timeout=60)
