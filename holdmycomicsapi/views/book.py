@@ -63,7 +63,7 @@ class BookView(ViewSet):
     def list(self, request):
         """GET Books for a Specific Week"""
         # Get the selected week from the query parameters (formatted date from the frontend)
-        selected_date = request.GET.get('formattedDate')  # Change 'date' to 'formattedDate' to match frontend
+        selected_date = request.GET.get('formattedDate')  # matches 'date' to 'formattedDate' on frontend
 
         # Convert the selected_date (formatted date) to a datetime object
         selected_date = datetime.datetime.strptime(selected_date, '%Y-%m-%d').date()
