@@ -7,3 +7,4 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     price = models.CharField(max_length=10)
     description = models.CharField(max_length=500)
+    release_date = models.CharField(max_length=20, default='')

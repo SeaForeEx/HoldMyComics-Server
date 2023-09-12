@@ -27,6 +27,7 @@ class BookView(ViewSet):
             image_url = json_data.get('image', '')
             price = json_data.get('price', 0)
             description = json_data.get('desc', '')
+            release_date = json_data.get('store_date', '')
             
             # Extract and set the publisher information
             publisher_data = json_data.get('publisher')
@@ -45,7 +46,8 @@ class BookView(ViewSet):
                 publisher=publisher_name,
                 title=title_name,
                 price=price,
-                description=description
+                description=description,
+                release_date=release_date
             )
             
             # Serialize the Book object
@@ -98,7 +100,8 @@ class BookView(ViewSet):
                 publisher='',
                 title=item.get('issue', ''),
                 price=0,
-                description=''
+                description='',
+                release_date=''
             )
             book.save()
             books.append(book)
@@ -155,4 +158,4 @@ class BookSerializer(serializers.ModelSerializer):
       
     class Meta:
         model = Book
-        fields = ('id', 'image_url', 'publisher', 'title', 'price', 'description')
+        fields = ('id', 'image_url', 'publisher', 'title', 'price', 'description', 'release_date')
