@@ -22,6 +22,7 @@ class CustomerView(ViewSet):
             store_id = store_id,
             customer_name=request.data["customerName"],
             email=request.data["email"],
+            phone=request.data["phone"],
         ) # customer variable is now the new customer instance, including new id
         
         # object is now serialized
@@ -80,6 +81,7 @@ class CustomerView(ViewSet):
         customer.store_id = User.objects.get(pk=request.data["storeId"])
         customer.customer_name = request.data["customerName"]
         customer.email = request.data["email"]
+        customer.phone = request.data["phone"]
         
         # changes saved to data base
         customer.save()
@@ -123,7 +125,7 @@ class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         # The Meta class hold the configuration for the serializer.
         model = Customer
-        fields = ('id', 'store_id', 'customer_name', 'email')
+        fields = ('id', 'store_id', 'customer_name', 'email', 'phone')
         depth = 1
         # GET methods do not include nested data, need "depth" to get that sweet Nestle Data
         
