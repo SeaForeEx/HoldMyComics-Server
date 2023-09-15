@@ -26,6 +26,10 @@ class SearchView(ViewSet):
         today_str = today.strftime('%Y-%m-%d')
         
         month_str = one_month_later.strftime('%Y-%m-%d')
+        
+        # Print the date strings
+        print(f"Today: {today_str}")
+        print(f"One Month Later: {month_str}")
 
         # Build the API URL with the calculated date range
         api_url = f"https://metron.cloud/api/issue/?store_date_range_after={today_str}&store_date_range_before={month_str}"
