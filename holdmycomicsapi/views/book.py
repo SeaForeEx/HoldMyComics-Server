@@ -112,6 +112,49 @@ class BookView(ViewSet):
         # Return the serialized data along with the HTTP 200 OK status
         return Response(serializer.data, status=status.HTTP_200_OK)
     
+    @action(detail=False, methods=['GET'])
+    def booksthisweek(self, request):
+        """Books Released This Week"""
+
+        # Calculate the start and end dates based on the selected week
+        today = datetime.date.today()
+       
+        # Calculate the start date for this week
+        start_of_week = today - datetime.timedelta(days=today.weekday())
+        
+        end_of_week = start_of_week + datetime.timedelta(days=6)
+
+        # Format the start and end dates as strings
+        start_date_str = start_of_week.strftime('%Y-%m-%d')
+        end_date_str = end_of_week.strftime('%Y-%m-%d')
+
+        # Build the API URL with the calculated date range
+        api_url = f"https://metron.cloud/api/issue/?store_date_range_after={start_date_str}&store_date_range_before={end_date_str}"
+
+        response = requests.get(api_url, auth=(env('METRON_USERNAME'), env('METRON_PASSWORD')), timeout=60)
+        
+        json = response.json()
+        books = []
+        
+        for item in json['results']:
+            book = Book(
+                id=item.get('id'),
+                image_url=item.get('image'),
+                publisher='',
+                title=item.get('issue', ''),
+                price=0,
+                description='',
+                release_date=''
+            )
+            book.save()
+            books.append(book)
+        
+        # Serialize the Book objects
+        serializer = BookSerializer(books, many=True)
+        
+        # Return the serialized data along with the HTTP 200 OK status
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
     # Custom action that adds a book to a customer
     @action(methods=['post'], detail=True)
     def addtocustomer(self, request, pk):
