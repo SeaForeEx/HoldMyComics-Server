@@ -112,6 +112,16 @@ class CustomerView(ViewSet):
         except CustomerBook.DoesNotExist:
             return Response(False)
         
+    @action(methods=['get'], detail=False)
+    def get_all_books(self, request):
+        """Get all the books for the customer"""
+        try:
+            customer_books = CustomerBook.objects.all()
+            serializer = CustomerBookSerializer(customer_books, many=True)
+            return Response(serializer.data)
+        except CustomerBook.DoesNotExist:
+            return Response(False)
+        
 class CustomerBookSerializer(serializers.ModelSerializer):
     """JSON Serializer for Customer Books"""
     class Meta:
