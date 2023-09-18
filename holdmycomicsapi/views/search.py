@@ -19,20 +19,22 @@ class SearchView(ViewSet):
 
         # Calculate the start and end dates based on the selected week
         today = datetime.date.today()
-
+        
         two_weeks_later = today + relativedelta(days=14)
 
+        three_weeks_later = today + relativedelta(days=21)
+
         # Format the start and end dates as strings
-        today_str = today.strftime('%Y-%m-%d')
+        two_str = two_weeks_later.strftime('%Y-%m-%d')
         
-        twowk_str = two_weeks_later.strftime('%Y-%m-%d')
+        three_str = three_weeks_later.strftime('%Y-%m-%d')
         
         # Print the date strings
-        print(f"Today: {today_str}")
-        print(f"Two Weeks Later: {twowk_str}")
+        print(f"Two Weeks Later: {two_str}")
+        print(f"Three Weeks Later: {three_str}")
 
         # Build the API URL with the calculated date range
-        api_url = f"https://metron.cloud/api/issue/?store_date_range_after={today_str}&store_date_range_before={twowk_str}"
+        api_url = f"https://metron.cloud/api/issue/?store_date_range_after={two_str}&store_date_range_before={three_str}"
 
         response = requests.get(api_url, auth=(env('METRON_USERNAME'), env('METRON_PASSWORD')), timeout=60)
         

@@ -94,6 +94,8 @@ class BookView(ViewSet):
         books = []
         
         for item in json['results']:
+            rating = item.get("rating", {}).get("name")
+            print(f'{rating}')
             book = Book(
                 id=item.get('id'),
                 image_url=item.get('image'),
