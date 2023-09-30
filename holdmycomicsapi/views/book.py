@@ -12,6 +12,27 @@ env = environ.Env()
 class BookView(ViewSet):
     """HMC Books View"""
     
+    def create(self, request):
+        """POST Book"""
+        
+        # requests data from front end to get the data used to create the entity
+        
+        # call create ORM method and pass fields as function parameters
+        book = Book.objects.create(
+            image_url=request.data["imageUrl"],
+            publisher=request.data["publisher"],
+            title=request.data["title"],
+            price=request.data["price"],
+            description=request.data["description"],
+            release_date=request.data["releaseDate"],
+        ) # customer variable is now the new customer instance, including new id
+        
+        # object is now serialized
+        serializer = BookSerializer(book)
+        
+        # data passed back to the front end
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
     def retrieve(self, request, pk):
         """GET Single Book"""
         
@@ -113,6 +134,28 @@ class BookView(ViewSet):
         
         # Return the serialized data along with the HTTP 200 OK status
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def update(self, request, pk):
+        """PUT Book"""
+        # PUT requests expect the entire object to be sent to the server regardless of whether a field has been updated
+        
+        # grab book object you want from database
+        book = Book.objects.get(pk=pk)
+        
+        # setting the fields on customer to the values coming from the client
+        
+        book.image_url = request.data["imageUrl"]
+        book.publisher = request.data["publisher"]
+        book.title = request.data["title"]
+        book.price = request.data["price"]
+        book.description = request.data["description"]
+        book.release_date = request.data["releaseDate"]
+        
+        # changes saved to data base
+        book.save()
+        
+        # data returned to front end
+        return Response('Customer Updated', status=status.HTTP_200_OK)
     
     @action(detail=False, methods=['GET'])
     def booksthisweek(self, request):
