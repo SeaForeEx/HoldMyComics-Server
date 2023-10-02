@@ -3,7 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from rest_framework.decorators import action
-from holdmycomicsapi.models import Customer, User, CustomerBook
+from holdmycomicsapi.models import Customer, User, CustomerBook, Book
 
 class CustomerView(ViewSet):
     """HMC Customers View"""
@@ -104,15 +104,29 @@ class CustomerView(ViewSet):
         
         return Response('Customer Deleted', status=status.HTTP_204_NO_CONTENT)
     
+    # @action(methods=['get'], detail=True)
+    # def get_books(self, request, pk):
+    #     """Get the books for the customer"""
+    #     try:
+    #         customer_books = CustomerBook.objects.filter(customer_id = pk)
+    #         serializer = CustomerBookSerializer(customer_books, many=True)
+    #         return Response(serializer.data)
+    #     except CustomerBook.DoesNotExist:
+    #         return Response(False)
+        
     @action(methods=['get'], detail=True)
     def get_books(self, request, pk):
         """Get the books for the customer"""
         try:
-            customer_books = CustomerBook.objects.filter(customer_id = pk)
-            serializer = CustomerBookSerializer(customer_books, many=True)
+            # Retrieve the customer books associated with the customer
+            customer_books = CustomerBook.objects.filter(customer_id=pk)
+            
+            # Serialize the customer_books queryset using the CustomerBookWithBookSerializer
+            serializer = CustomerBookWithBookSerializer(customer_books, many=True)
+
             return Response(serializer.data)
         except CustomerBook.DoesNotExist:
-            return Response(False)
+            return Response({'error': 'CustomerBook data not found'}, status=status.HTTP_404_NOT_FOUND)
         
     @action(methods=['get'], detail=False)
     def get_all_books(self, request):
@@ -140,5 +154,22 @@ class CustomerSerializer(serializers.ModelSerializer):
         fields = ('id', 'store_id', 'customer_name', 'email', 'phone', 'store_credit')
         depth = 1
         # GET methods do not include nested data, need "depth" to get that sweet Nestle Data
+        
+class BookSerializer(serializers.ModelSerializer):
+    """JSON Serializer for Users"""
+      
+    class Meta:
+        model = Book
+        fields = ('id', 'image_url', 'publisher', 'title', 'price', 'description', 'release_date')
+        depth=1
+        
+class CustomerBookWithBookSerializer(serializers.ModelSerializer):
+    """JSON Serializer for Customer Book Details"""
+    
+    book = BookSerializer()
+    class Meta:
+        model = CustomerBook
+        fields = ('id', 'customer', 'book')
+        depth = 1
         
 # ORM provides a way to map between objects in your programming language and tables in a relational database
