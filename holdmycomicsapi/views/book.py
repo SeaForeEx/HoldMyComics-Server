@@ -46,7 +46,7 @@ class BookView(ViewSet):
             # Extract relevant fields from the JSON data
             book_id = json_data.get('id')
             image_url = json_data.get('image', '')
-            price = json_data.get('price', 0)
+            price = json_data.get('price', '')
             description = json_data.get('desc', '')
             release_date = json_data.get('store_date', '')
             
@@ -122,7 +122,7 @@ class BookView(ViewSet):
                 image_url=item.get('image'),
                 publisher='',
                 title=item.get('issue', ''),
-                price=0,
+                price='',
                 description='',
                 release_date=''
             )
@@ -187,7 +187,7 @@ class BookView(ViewSet):
                 image_url=item.get('image'),
                 publisher='',
                 title=item.get('issue', ''),
-                price=0,
+                price=item.get('price', ''),
                 description='',
                 release_date=''
             )
@@ -247,3 +247,12 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ('id', 'image_url', 'publisher', 'title', 'price', 'description', 'release_date')
+        
+class CustomerBookWithBookSerializer(serializers.ModelSerializer):
+    """JSON Serializer for Customer Book Details"""
+    
+    book = BookSerializer()
+    class Meta:
+        model = CustomerBook
+        fields = ('id', 'customer', 'book')
+        depth = 2
