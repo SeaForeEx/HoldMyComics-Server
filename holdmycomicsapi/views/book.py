@@ -36,12 +36,19 @@ class BookView(ViewSet):
     def retrieve(self, request, pk):
         """GET Single Book"""
         
-        api_url = f"https://metron.cloud/api/issue/{pk}"
+        api_url = f"https://metron.cloud/api/issue/{pk}/"
+        print(api_url)
         response = requests.get(api_url, auth=(env('METRON_USERNAME'), env('METRON_PASSWORD')), timeout=60)
+        
+        print(response.status_code)
         
         if response.status_code == 200:
             # Deserialize the JSON data
+            print(response.content)
             json_data = response.json()
+            
+            # Add print statements to check data retrieval
+            print("Retrieved JSON data:", json_data)
             
             # Extract relevant fields from the JSON data
             book_id = json_data.get('id')
