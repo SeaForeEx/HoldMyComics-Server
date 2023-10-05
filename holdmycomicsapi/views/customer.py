@@ -124,33 +124,33 @@ class CustomerView(ViewSet):
         """Get all the customer books"""
         try:
             customer_books = CustomerBook.objects.all()
-            serializer = CustomerBookWithBookSerializer(customer_books, many=True)
+            serializer = CustomerBookSerializer(customer_books, many=True)
             return Response(serializer.data)
         except CustomerBook.DoesNotExist:
             return Response(False)
         
-# class CustomerBookSerializer(serializers.ModelSerializer):
-#     book_details = serializers.SerializerMethodField()
-
-#     class Meta:
-#         model = CustomerBook
-#         fields = ['customer_id', 'book_id', 'book_details']
-
-#     def get_book_details(self, obj):
-#         try:
-#             book = Book.objects.get(id=obj.book_id)
-#             # Serialize the book data using your BookSerializer
-#             book_serializer = BookSerializer(book)
-#             return book_serializer.data
-#         except Book.DoesNotExist:
-#             return None
-
 class CustomerBookSerializer(serializers.ModelSerializer):
-    """JSON Serializer for Customer Books"""
+    book_details = serializers.SerializerMethodField()
+
     class Meta:
         model = CustomerBook
-        fields = ('id', 'customer', 'book')
-        depth = 1
+        fields = ['customer_id', 'book_id', 'book_details']
+
+    def get_book_details(self, obj):
+        try:
+            book = Book.objects.get(id=obj.book_id)
+            # Serialize the book data using your BookSerializer
+            book_serializer = BookSerializer(book)
+            return book_serializer.data
+        except Book.DoesNotExist:
+            return None
+
+# class CustomerBookSerializer(serializers.ModelSerializer):
+#     """JSON Serializer for Customer Books"""
+#     class Meta:
+#         model = CustomerBook
+#         fields = ('id', 'customer', 'book')
+#         depth = 1
       
 class CustomerSerializer(serializers.ModelSerializer):
     """JSON Serializer for Customers"""
